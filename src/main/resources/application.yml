@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: UserManagement
+  profiles:
+    active: dev
+
+server:
+  port: 9007
