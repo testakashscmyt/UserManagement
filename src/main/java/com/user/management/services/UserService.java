@@ -1,30 +1,37 @@
 package com.user.management.services;
 
+import com.user.management.dtos.UserDto;
 import com.user.management.entities.User;
 
 import java.util.*;
 
 public interface UserService {
 
-//create
 
-    User createUser(User user);
+//    register user
+
+
+    //create user
+    UserDto createUser(UserDto userDto);
 
 
 //update
 
-    User updateUser(int id, User user);
+    UserDto updateUser(UserDto userDto, String userId);
 
 //delete
 
+    void deleteUser(String userId);
 
-//get by id
+//    get user by email
 
-    User getUserById(int id);
+    UserDto getUserByEmail(String email);
+
+    //get by id
+    UserDto getUserById(String userId);
 
 
-//getAll
-
-    List<User> getAllUser();
+    //getAll
+    List<UserDto> getAllUser();
 
 }
