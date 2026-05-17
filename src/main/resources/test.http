@@ -17,3 +17,14 @@ Content-Type: application/json
   "contact": "new contact",
   "address": "jaipur"
 }
+
+###Update user
+PUT http://localhost:9007/users/12
+Content-Type: application/json
+
+{
+  "name": "Updated User",
+  "email": "update@gmail.com",
+  "contact": "update contact",
+  "address": "updated city"
+}

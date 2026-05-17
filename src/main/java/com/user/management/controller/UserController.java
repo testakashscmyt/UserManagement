@@ -23,9 +23,12 @@ public class UserController {
 
 
 //    update
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable int id,@RequestBody User user){
+        return this.userServiceImpl.updateUser(id,user);
+    }
 
 //    get single user
-
     @GetMapping("/{id}")
     public User getUserByUserId(@PathVariable ("id") int id) {
         return this.userServiceImpl.getUserById(id);
