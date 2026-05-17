@@ -19,7 +19,7 @@ public class UserController {
     @PostMapping
     public User createUser(@RequestBody User user) {
         this.userServiceImpl.createUser(user);
-        return new User();
+        return
     }
 
 
@@ -27,12 +27,9 @@ public class UserController {
 
 //    get single user
 
-    @GetMapping
-    public User getUserByUserId(@PathVariable Integer id) {
-
-        this.userServiceImpl.getUserById(id);
-        return new User();
-
+    @GetMapping("/{id}")
+    public User getUserByUserId(@PathVariable ("id") int id) {
+        return this.userServiceImpl.getUserById(id);
     }
 
 

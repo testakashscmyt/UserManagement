@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
-    List userList = new ArrayList();
+    static List<User> userList = new ArrayList();
 
-    public UserServiceImpl(){
+    static{
 
         userList.add(new User(12,"Akash","akash@gmail.com","545485","moz"));
         userList.add(new User(13,"Anshul","anshul@gmail.com","545485","delhi"));
@@ -20,18 +20,18 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
     @Override
-    public void createUser(User user) {
+    public User createUser(User user) {
         userList.add(user);
+        return user;
     }
 
     @Override
     public User getUserById(int id) {
-
-        userList.stream().forEach(System.out::println);
-        return new User();
-
+        return  userList.stream()
+                .filter(user -> ((User) user).getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

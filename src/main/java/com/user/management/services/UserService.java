@@ -8,7 +8,7 @@ public interface UserService {
 
 //create
 
-    void createUser(User user);
+    User createUser(User user);
 
 
 //update
