@@ -13,6 +13,7 @@ public interface UserService {
 
 //update
 
+    User updateUser(int id, User user);
 
 //delete
 

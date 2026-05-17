@@ -27,6 +27,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User updateUser(int id, User user) {
+
+        User user1 = userList.stream().filter(u -> u.getId() == id).findAny().orElse(null);
+        user1.setName(user.getName());
+        user1.setAddress(user.getAddress());
+        user1.setEmail(user.getEmail());
+        user1.setContact(user.getContact());
+        return user1;
+    }
+
+    @Override
     public User getUserById(int id) {
         return  userList.stream()
                 .filter(user -> ((User) user).getId() == id)
