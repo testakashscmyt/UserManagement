@@ -1,17 +1,20 @@
 package com.user.management.entities;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.*;
-import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Document
+@Entity
 public class User {
 
+    @Id
     private int id;
     private String name;
     private String email;
