@@ -2,14 +2,22 @@ package com.user.management.services;
 
 import com.user.management.dtos.UserDto;
 import com.user.management.entities.User;
+import com.user.management.repository.UserRepo;
 import com.user.management.services.UserService;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
+@AllArgsConstructor
 public class UserServiceImpl implements UserService {
+
+    private final UserRepo userRepo;
 
     static List<User> userList = new ArrayList();
 
@@ -22,34 +30,72 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public UserDto createUser(UserDto userDto) {
-        return null;
+    public User registerUser(User user) {
+        return this.userRepo.save(user);
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto, String userId) {
-        return null;
+    public List<User> getAllUsers(){
+        return this.userRepo.findAll();
     }
 
     @Override
-    public void deleteUser(String userId) {
-
+    public User getById(UUID id) {
+        return this.userRepo.findById(id).orElse(null);
     }
 
     @Override
-    public UserDto getUserByEmail(String email) {
-        return null;
+    public void deleteUserById(UUID uuid) {
+       this.userRepo.deleteById(uuid);
     }
 
     @Override
-    public UserDto getUserById(String userId) {
-        return null;
+    public User updateUser(UUID id, User user) {
+            User user1 = new User();
+            user1.setId(id);
+
+            user1.setName(user.getName());
+            user1.setContact(user.getContact());
+            user1.setEmail(user.getEmail());
+            user1.setEnabled(false);
+            user1.setPassword(user.getPassword());
+            user1.setImage(user.getImage());
+
+            return this.userRepo.save(user1);
+
     }
 
-    @Override
-    public List<UserDto> getAllUser() {
-        return List.of();
-    }
+
+//
+//    @Override
+//    public UserDto createUser(UserDto userDto) {
+//        return null;
+//    }
+//
+//    @Override
+//    public UserDto updateUser(UserDto userDto, String userId) {
+//        return null;
+//    }
+//
+//    @Override
+//    public void deleteUser(String userId) {
+//
+//    }
+//
+//    @Override
+//    public UserDto getUserByEmail(String email) {
+//        return null;
+//    }
+//
+//    @Override
+//    public UserDto getUserById(String userId) {
+//        return null;
+//    }
+//
+//    @Override
+//    public List<UserDto> getAllUser() {
+//        return List.of();
+//    }
 
 //    @Override
 //    public User createUser(User user) {
@@ -81,4 +127,7 @@ public class UserServiceImpl implements UserService {
 //    public List<User> getAllUser() {
 //        return userList;
 //    }
+
+
+
 }
